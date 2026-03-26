@@ -16,14 +16,26 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        fun checkUrl(url:String) : String{
+            if(!urlEditText.text.contains("https://")){
+                val newURL = "https://$url"
+                urlEditText.setText( newURL)
+                return newURL
+            }
+            else{
+                return url
+            }
+        }
 
         urlEditText = findViewById(R.id.urlEditText)
         goButton = findViewById(R.id.goButton)
         webView = findViewById(R.id.webView)
 
         goButton.setOnClickListener {
-            webView.loadUrl(urlEditText.text.toString())
+
+            webView.loadUrl(checkUrl(urlEditText.text.toString()))
         }
+
 
 
 
